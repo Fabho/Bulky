@@ -3,8 +3,9 @@ using Bulky.Models;
 using BulkyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace BulkyWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -27,7 +28,7 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if(obj.Name == obj.DisplayOrder.ToString()) 
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("name", "The DiplayOrder cannot exactly match the Name.");
             }
@@ -45,7 +46,7 @@ namespace BulkyWeb.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0) 
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
